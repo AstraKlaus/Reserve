@@ -1,6 +1,5 @@
 package org.example.controllers;
 
-import lombok.extern.slf4j.Slf4j;
 import org.example.models.*;
 import org.example.services.*;
 import jakarta.validation.Valid;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/categories")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:5174")
+@CrossOrigin("http://localhost:5173")
 public class CategoryController {
 
     private final CategoryService categoryService;

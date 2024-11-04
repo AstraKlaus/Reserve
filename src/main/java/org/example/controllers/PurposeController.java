@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/purposes")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:5174")
+@CrossOrigin("http://localhost:5173")
 public class PurposeController {
 
     private final PurposeService purposeService;

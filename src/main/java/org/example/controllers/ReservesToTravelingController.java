@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reserves-to-traveling")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:5174")
+@CrossOrigin("http://localhost:5173")
 public class ReservesToTravelingController {
 
     private final ReservesToTravelingService reservesToTravelingService;

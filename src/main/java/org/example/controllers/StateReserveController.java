@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/states")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:5174")
+@CrossOrigin("http://localhost:5173")
 public class StateReserveController {
 
     private final StateReserveService stateReserveService;
