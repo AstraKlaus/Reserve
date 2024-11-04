@@ -1,0 +1,328 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: andrew
+      changes:
+        - createTable:
+            tableName: region
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: andrew
+      changes:
+        - createTable:
+            tableName: city
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 3
+      author: andrew
+      changes:
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: andrew
+      changes:
+        - createTable:
+            tableName: state_reserve
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 5
+      author: andrew
+      changes:
+        - createTable:
+            tableName: type_reserves
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 6
+      author: andrew
+      changes:
+        - createTable:
+            tableName: purpose
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 7
+      author: andrew
+      changes:
+        - createTable:
+            tableName: reserves
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: CHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: id_region
+                  type: BIGINT
+              - column:
+                  name: id_city
+                  type: BIGINT
+              - column:
+                  name: data_create
+                  type: DATE
+              - column:
+                  name: id_category
+                  type: BIGINT
+              - column:
+                  name: id_state
+                  type: BIGINT
+              - column:
+                  name: id_type
+                  type: BIGINT
+              - column:
+                  name: id_purpose
+                  type: BIGINT
+              - column:
+                  name: department
+                  type: VARCHAR(255)
+              - column:
+                  name: count_cluster
+                  type: BIGINT
+              - column:
+                  name: size
+                  type: BIGINT
+              - column:
+                  name: guarded_size
+                  type: BIGINT
+              - column:
+                  name: mail
+                  type: VARCHAR(255)
+              - column:
+                  name: supervisor
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: BIGINT
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: link
+                  type: VARCHAR(255)
+              - column:
+                  name: cluster_zone
+                  type: JSONB
+        - addForeignKeyConstraint:
+            baseTableName: reserves
+            baseColumnNames: id_region
+            referencedTableName: region
+            constraintName: fk_reserves_region
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves
+            baseColumnNames: id_city
+            referencedTableName: city
+            constraintName: fk_reserves_city
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves
+            baseColumnNames: id_category
+            referencedTableName: category
+            constraintName: fk_reserves_category
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves
+            baseColumnNames: id_state
+            referencedTableName: state_reserve
+            constraintName: fk_reserves_state
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves
+            baseColumnNames: id_type
+            referencedTableName: type_reserves
+            constraintName: fk_reserves_type
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves
+            baseColumnNames: id_purpose
+            referencedTableName: purpose
+            constraintName: fk_reserves_purpose
+            referencedColumnNames: id
+
+  - changeSet:
+      id: 8
+      author: andrew
+      changes:
+        - createTable:
+            tableName: img
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: link
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 9
+      author: andrew
+      changes:
+        - createTable:
+            tableName: reserves_to_img
+            columns:
+              - column:
+                  name: id_reserves
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: id_img
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+
+        - addForeignKeyConstraint:
+            baseTableName: reserves_to_img
+            baseColumnNames: id_reserves
+            referencedTableName: reserves
+            constraintName: fk_reserves_to_img
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves_to_img
+            baseColumnNames: id_img
+            referencedTableName: img
+            constraintName: fk_img
+            referencedColumnNames: id
+
+  - changeSet:
+      id: 10
+      author: andrew
+      changes:
+        - createTable:
+            tableName: traveling
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: points
+                  type: JSONB
+
+  - changeSet:
+      id: 11
+      author: andrew
+      changes:
+        - createTable:
+            tableName: reserves_to_traveling
+            columns:
+              - column:
+                  name: id_reserves
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: id_traveling
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+        - addForeignKeyConstraint:
+            baseTableName: reserves_to_traveling
+            baseColumnNames: id_reserves
+            referencedTableName: reserves
+            constraintName: fk_reserves_to_traveling
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: reserves_to_traveling
+            baseColumnNames: id_traveling
+            referencedTableName: traveling
+            constraintName: fk_traveling
+            referencedColumnNames: id
