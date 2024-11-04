@@ -63,8 +63,8 @@ public class Reserves {
     private String link;
 
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "cluster_zone")
-    private ClusterZone clusterZone;
+    @Column(name = "coordinates")
+    private Point coordinates;
 
     @JsonIgnore
     @OneToMany(mappedBy = "reserves")

@@ -50,7 +50,7 @@ public class ReservesService {
         existingReserves.setPhone(reserves.getPhone());
         existingReserves.setEmail(reserves.getEmail());
         existingReserves.setLink(reserves.getLink());
-        existingReserves.setClusterZone(reserves.getClusterZone());
+        existingReserves.setCoordinates(reserves.getCoordinates());
 
         return reservesRepository.save(existingReserves);
     }

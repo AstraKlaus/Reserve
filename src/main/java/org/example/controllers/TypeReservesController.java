@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/types")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:5174")
 public class TypeReservesController {
 
     private final TypeReservesService typeReservesService;

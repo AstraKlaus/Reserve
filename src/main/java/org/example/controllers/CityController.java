@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cities")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:5174")
 public class CityController {
 
     private final CityService cityService;

@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reserves-to-images")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:5174")
 public class ReservesToImgController {
 
     private final ReservesToImgService reservesToImgService;

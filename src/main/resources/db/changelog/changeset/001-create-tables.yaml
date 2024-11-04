@@ -183,7 +183,7 @@ databaseChangeLog:
                   name: link
                   type: VARCHAR(255)
               - column:
-                  name: cluster_zone
+                  name: coordinates
                   type: JSONB
         - addForeignKeyConstraint:
             baseTableName: reserves
