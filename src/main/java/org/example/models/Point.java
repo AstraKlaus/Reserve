@@ -12,6 +12,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 public class Point implements Serializable {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 }

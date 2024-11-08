@@ -1,4 +1,4 @@
-version: '4.0'
+version: '3.8'
 
 services:
   postgres:
@@ -16,7 +16,7 @@ services:
       - "5432:5432"
 
   springboot-app:
-    build: .
+    build: ./
     container_name: springboot-app
     depends_on:
       - postgres
@@ -31,8 +31,9 @@ services:
     networks:
       - app-network
     volumes:
-      - ./db/changelog:/app/db/changelog # Монтирование Liquibase файлов в контейнер
-      - ./logs:/app/logs # Логи приложения
+      - ./db/changelog:/app/db/changelog
+      - ./logs:/app/logs
+    restart: on-failure
 
 networks:
   app-network:
