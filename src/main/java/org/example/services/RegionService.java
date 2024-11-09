@@ -47,7 +47,7 @@ public class RegionService {
 
     public Set<City> getCitiesByRegion(Long regionId) {
         Region region = regionRepository.findById(regionId)
-                .orElseThrow(() -> new EntityNotFoundException(("Region with id " + regionId + " not found")));
+                .orElseThrow(() -> new IDNotFoundException(("Region with id " + regionId + " not found")));
         return region.getCities();
     }
 }
