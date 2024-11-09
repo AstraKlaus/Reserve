@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +43,11 @@ public class RegionService {
 
     public Optional<Region> findByName(String name) {
         return regionRepository.findByName(name);
+    }
+
+    public Set<City> getCitiesByRegion(Long regionId) {
+        Region region = regionRepository.findById(regionId)
+                .orElseThrow(() -> new EntityNotFoundException(("Region with id " + regionId + " not found")));
+        return region.getCities();
     }
 }

@@ -14,6 +14,7 @@ import java.util.Optional;
 public class CityService {
 
     private final CityRepository cityRepository;
+    private final RegionRepository regionRepository;
 
     public List<City> getAllCities() {
         return cityRepository.findAll();

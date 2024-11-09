@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/regions")
@@ -51,5 +52,10 @@ public class RegionController {
         return regionService.findByName(name)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @GetMapping("/cities/{regionId}")
+    public ResponseEntity<Set<City>> getCitiesByRegion(@PathVariable Long regionId) {
+        return ResponseEntity.ok(regionService.getCitiesByRegion(regionId));
     }
 }
