@@ -1,5 +1,6 @@
 package org.example.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,4 +17,8 @@ public class City {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "id_region", nullable = false)
+    private Region region;
 }

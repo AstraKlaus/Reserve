@@ -31,6 +31,7 @@ public class CityService {
     public City updateCity(Long id, City city) {
         City existingCity = getCityById(id);
         existingCity.setName(city.getName());
+        existingCity.setRegion(city.getRegion());
         return cityRepository.save(existingCity);
     }
 

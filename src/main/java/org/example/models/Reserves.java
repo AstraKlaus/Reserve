@@ -62,9 +62,11 @@ public class Reserves {
     private String email;
     private String link;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "coordinates")
-    private Point coordinates;
+    @Column(name = "x")
+    private double x;
+
+    @Column(name = "y")
+    private double y;
 
     @JsonIgnore
     @OneToMany(mappedBy = "reserves")

@@ -32,6 +32,7 @@ public class RegionService {
     public Region updateRegion(Long id, Region region) {
         Region existingRegion = getRegionById(id);
         existingRegion.setName(region.getName());
+        existingRegion.setCities(region.getCities());
         return regionRepository.save(existingRegion);
     }
 

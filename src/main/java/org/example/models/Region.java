@@ -1,6 +1,7 @@
 package org.example.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +21,8 @@ public class Region {
 
     @Column(nullable = false)
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "region")
+    private Set<City> cities;
 }

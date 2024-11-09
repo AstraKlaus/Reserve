@@ -36,6 +36,15 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+              - column:
+                  name: id_region
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: city
+            baseColumnNames: id_region
+            referencedTableName: region
+            constraintName: fk_city_region
+            referencedColumnNames: id
 
   - changeSet:
       id: 3
@@ -183,8 +192,11 @@ databaseChangeLog:
                   name: link
                   type: VARCHAR(255)
               - column:
-                  name: coordinates
-                  type: JSONB
+                  name: x
+                  type: DOUBLE
+              - column:
+                  name: y
+                  type: DOUBLE
         - addForeignKeyConstraint:
             baseTableName: reserves
             baseColumnNames: id_region
