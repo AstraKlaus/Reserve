@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
-
 @Entity
 @Table(name = "img")
 @Data
@@ -20,7 +18,12 @@ public class Img {
     @Column(nullable = false)
     private String link;
 
+    @Lob
+    @Column(nullable = false)
+    private byte[] image;
+
     @JsonIgnore
-    @OneToMany(mappedBy = "img")
-    private Set<ReservesToImg> reserves;
+    @ManyToOne
+    @JoinColumn(name = "id_reserve", nullable = false)
+    private Reserve reserve;
 }

@@ -30,6 +30,7 @@ public class Traveling {
     private List<Point> points;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "traveling")
-    private Set<ReservesToTraveling> reserves;
+    @ManyToOne
+    @JoinColumn(name = "id_reserve", nullable = false)
+    private Reserve reserve;
 }

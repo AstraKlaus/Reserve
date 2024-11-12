@@ -89,7 +89,7 @@ databaseChangeLog:
       author: andrew
       changes:
         - createTable:
-            tableName: type_reserves
+            tableName: type_reserve
             columns:
               - column:
                   name: id
@@ -127,7 +127,7 @@ databaseChangeLog:
       author: andrew
       changes:
         - createTable:
-            tableName: reserves
+            tableName: reserve
             columns:
               - column:
                   name: id
@@ -198,40 +198,40 @@ databaseChangeLog:
                   name: y
                   type: DOUBLE
         - addForeignKeyConstraint:
-            baseTableName: reserves
+            baseTableName: reserve
             baseColumnNames: id_region
             referencedTableName: region
-            constraintName: fk_reserves_region
+            constraintName: fk_reserve_region
             referencedColumnNames: id
         - addForeignKeyConstraint:
-            baseTableName: reserves
+            baseTableName: reserve
             baseColumnNames: id_city
             referencedTableName: city
-            constraintName: fk_reserves_city
+            constraintName: fk_reserve_city
             referencedColumnNames: id
         - addForeignKeyConstraint:
-            baseTableName: reserves
+            baseTableName: reserve
             baseColumnNames: id_category
             referencedTableName: category
-            constraintName: fk_reserves_category
+            constraintName: fk_reserve_category
             referencedColumnNames: id
         - addForeignKeyConstraint:
-            baseTableName: reserves
+            baseTableName: reserve
             baseColumnNames: id_state
             referencedTableName: state_reserve
-            constraintName: fk_reserves_state
+            constraintName: fk_reserve_state
             referencedColumnNames: id
         - addForeignKeyConstraint:
-            baseTableName: reserves
+            baseTableName: reserve
             baseColumnNames: id_type
-            referencedTableName: type_reserves
-            constraintName: fk_reserves_type
+            referencedTableName: type_reserve
+            constraintName: fk_reserve_type
             referencedColumnNames: id
         - addForeignKeyConstraint:
-            baseTableName: reserves
+            baseTableName: reserve
             baseColumnNames: id_purpose
             referencedTableName: purpose
-            constraintName: fk_reserves_purpose
+            constraintName: fk_reserve_purpose
             referencedColumnNames: id
 
   - changeSet:
@@ -252,40 +252,21 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+              - column:
+                  name: image
+                  type: BIGINT
+              - column:
+                  name: id_reserve
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: img
+            baseColumnNames: id_reserve
+            referencedTableName: reserve
+            constraintName: fk_img_reserve
+            referencedColumnNames: id
 
   - changeSet:
       id: 9
-      author: andrew
-      changes:
-        - createTable:
-            tableName: reserves_to_img
-            columns:
-              - column:
-                  name: id_reserves
-                  type: BIGINT
-                  constraints:
-                    primaryKey: true
-              - column:
-                  name: id_img
-                  type: BIGINT
-                  constraints:
-                    primaryKey: true
-
-        - addForeignKeyConstraint:
-            baseTableName: reserves_to_img
-            baseColumnNames: id_reserves
-            referencedTableName: reserves
-            constraintName: fk_reserves_to_img
-            referencedColumnNames: id
-        - addForeignKeyConstraint:
-            baseTableName: reserves_to_img
-            baseColumnNames: id_img
-            referencedTableName: img
-            constraintName: fk_img
-            referencedColumnNames: id
-
-  - changeSet:
-      id: 10
       author: andrew
       changes:
         - createTable:
@@ -308,33 +289,3 @@ databaseChangeLog:
               - column:
                   name: points
                   type: JSONB
-
-  - changeSet:
-      id: 11
-      author: andrew
-      changes:
-        - createTable:
-            tableName: reserves_to_traveling
-            columns:
-              - column:
-                  name: id_reserves
-                  type: BIGINT
-                  constraints:
-                    primaryKey: true
-              - column:
-                  name: id_traveling
-                  type: BIGINT
-                  constraints:
-                    primaryKey: true
-        - addForeignKeyConstraint:
-            baseTableName: reserves_to_traveling
-            baseColumnNames: id_reserves
-            referencedTableName: reserves
-            constraintName: fk_reserves_to_traveling
-            referencedColumnNames: id
-        - addForeignKeyConstraint:
-            baseTableName: reserves_to_traveling
-            baseColumnNames: id_traveling
-            referencedTableName: traveling
-            constraintName: fk_traveling
-            referencedColumnNames: id

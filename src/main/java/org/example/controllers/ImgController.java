@@ -7,9 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/images")
@@ -29,16 +32,13 @@ public class ImgController {
         return ResponseEntity.ok(imgService.getImageById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Img> createImage(@RequestBody @Valid Img img) {
-        Img createdImg = imgService.createImage(img);
+    @PostMapping("/upload")
+    public ResponseEntity<Img> uploadImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("reserveId") Long reserveId
+    ) throws IOException {
+        Img createdImg = imgService.saveImage(file, reserveId);
         return new ResponseEntity<>(createdImg, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Img> updateImage(@PathVariable Long id, @RequestBody @Valid Img img) {
-        Img updatedImg = imgService.updateImage(id, img);
-        return ResponseEntity.ok(updatedImg);
     }
 
     @DeleteMapping("/{id}")
@@ -47,9 +47,9 @@ public class ImgController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<Optional<Img>> findByLink(@RequestParam String link) {
-        return ResponseEntity.ok(imgService.findByLink(link));
+    // Метод для получения изображений по ID резерва
+    @GetMapping("/reserve/{reserveId}")
+    public ResponseEntity<List<Img>> getImagesByReserveId(@PathVariable Long reserveId) {
+        return ResponseEntity.ok(imgService.getImagesByReserveId(reserveId));
     }
 }
-

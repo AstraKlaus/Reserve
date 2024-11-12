@@ -19,24 +19,24 @@ public class ReservesController {
     private final ReservesService reservesService;
 
     @GetMapping
-    public ResponseEntity<List<Reserves>> getAllReserves() {
+    public ResponseEntity<List<Reserve>> getAllReserves() {
         return ResponseEntity.ok(reservesService.getAllReserves());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reserves> getReservesById(@PathVariable Long id) {
+    public ResponseEntity<Reserve> getReservesById(@PathVariable Long id) {
         return ResponseEntity.ok(reservesService.getReservesById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Reserves> createReserve(@RequestBody @Valid Reserves reserves) {
-        Reserves createdReserve = reservesService.createReserve(reserves);
+    public ResponseEntity<Reserve> createReserve(@RequestBody @Valid Reserve reserve) {
+        Reserve createdReserve = reservesService.createReserve(reserve);
         return new ResponseEntity<>(createdReserve, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reserves> updateReserve(@PathVariable Long id, @RequestBody @Valid Reserves reserves) {
-        Reserves updatedReserve = reservesService.updateReserve(id, reserves);
+    public ResponseEntity<Reserve> updateReserve(@PathVariable Long id, @RequestBody @Valid Reserve reserve) {
+        Reserve updatedReserve = reservesService.updateReserve(id, reserve);
         return ResponseEntity.ok(updatedReserve);
     }
 
@@ -49,22 +49,22 @@ public class ReservesController {
     // Методы для поиска по объектам
 
     @GetMapping("/by-region/{regionId}")
-    public ResponseEntity<List<Reserves>> getReservesByRegion(@PathVariable Long regionId) {
+    public ResponseEntity<List<Reserve>> getReservesByRegion(@PathVariable Long regionId) {
         return ResponseEntity.ok(reservesService.findByRegion(regionId));
     }
 
     @GetMapping("/by-city/{cityId}")
-    public ResponseEntity<List<Reserves>> getReservesByCity(@PathVariable Long cityId) {
+    public ResponseEntity<List<Reserve>> getReservesByCity(@PathVariable Long cityId) {
         return ResponseEntity.ok(reservesService.findByCity(cityId));
     }
 
     @GetMapping("/by-category/{categoryId}")
-    public ResponseEntity<List<Reserves>> getReservesByCategory(@PathVariable Long categoryId) {
+    public ResponseEntity<List<Reserve>> getReservesByCategory(@PathVariable Long categoryId) {
         return ResponseEntity.ok(reservesService.findByCategory(categoryId));
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Reserves> searchReservesByName(@RequestParam String name) {
+    public ResponseEntity<Reserve> searchReservesByName(@RequestParam String name) {
         return ResponseEntity.ok(reservesService.findByName(name));
     }
 

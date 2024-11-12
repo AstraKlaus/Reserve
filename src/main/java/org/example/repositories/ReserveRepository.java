@@ -10,31 +10,31 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ReservesRepository extends JpaRepository<Reserves, Long> {
+public interface ReserveRepository extends JpaRepository<Reserve, Long> {
 
     // Поиск заповедника по названию
-    Optional<Reserves> findByName(String name);
+    Optional<Reserve> findByName(String name);
 
 
     // Поиск всех заповедников по региону
-    List<Reserves> findByRegion(Region region);
+    List<Reserve> findByRegion(Region region);
 
     // Поиск по городу
-    List<Reserves> findByCity(City city);
+    List<Reserve> findByCity(City city);
 
     // Поиск по категории
-    List<Reserves> findByCategory(Category category);
+    List<Reserve> findByCategory(Category category);
 
     // Поиск по типу заповедника
-    List<Reserves> findByType(TypeReserves type);
+    List<Reserve> findByType(TypeReserves type);
 
     // Поиск по состоянию заповедника
-    List<Reserves> findByState(StateReserve state);
+    List<Reserve> findByState(StateReserve state);
 
     // Поиск по цели заповедника
-    List<Reserves> findByPurpose(Purpose purpose);
+    List<Reserve> findByPurpose(Purpose purpose);
 
     // Кастомный запрос для поиска по размеру
-    @Query("SELECT r FROM Reserves r WHERE r.size >= :size")
-    List<Reserves> findReservesWithMinSize(@Param("size") Long size);
+    @Query("SELECT r FROM Reserve r WHERE r.size >= :size")
+    List<Reserve> findReservesWithMinSize(@Param("size") Long size);
 }

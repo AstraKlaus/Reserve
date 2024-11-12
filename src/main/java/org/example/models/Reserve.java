@@ -3,19 +3,18 @@ package org.example.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "reserves")
+@Table(name = "reserve")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Reserves {
+public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -69,11 +68,11 @@ public class Reserves {
     private double y;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "reserves")
-    private Set<ReservesToImg> images;
+    @OneToMany(mappedBy = "reserve")
+    private Set<Img> images;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "reserves")
-    private Set<ReservesToTraveling> travelings;
+    @OneToMany(mappedBy = "reserve")
+    private Set<Traveling> travelings;
 }
 
